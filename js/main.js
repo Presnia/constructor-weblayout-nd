@@ -51,6 +51,21 @@ const createHeader = (param) => {
         wrapper.append(logo); 
     }
 
+    if (param.header.menu) {
+        const menuWrapper = getElement('nav', ['menu-list']);
+        const allMenuLinks = param.header.menu.map(item => {
+            const menuLink = getElement('a', ['menu-link']);
+
+            menuLink.textContent = item.title;
+            menuLink.src = item.link;
+
+            return menuLink;
+        });
+
+        menuWrapper.append(...allMenuLinks);
+        wrapper.append(menuWrapper);
+    }
+
     if (param.header.social) {
         const socialWrapper = getElement('div', ['social']);
         const allSocial = param.header.social.map(item => {
@@ -67,10 +82,6 @@ const createHeader = (param) => {
 
         socialWrapper.append(...allSocial);
         wrapper.append(socialWrapper);
-    }
-
-    if (param.header.menu) {
-        // home work
     }
 
     header.append(container);
