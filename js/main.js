@@ -38,22 +38,24 @@ const getElement = (tagName, classNames, attributes) => {
     return element;
 };
 
-const createHeader = (param) => {
+const burgerButton = getElement('button', ['menu-button']);
+const wrapperHeader = getElement('div', ['header']);
+
+const createHeader = ({ title, header: { logo, menu, social, burger } }) => {
     const header = getElement('header');
     const container = getElement('div', ['container']); 
-    const wrapper = getElement('div', ['header']);
 
-    if (param.header.logo) {
-        const logo = getElement('img', ['logo'], {
-            src: param.header.logo,
-            alt: 'Логотип' + param.title,
+    if (logo) {
+        const logotype = getElement('img', ['logo'], {
+            src: logo,
+            alt: 'Логотип' + title,
         });
-        wrapper.append(logo); 
+        wrapperHeader.append(logotype); 
     }
 
-    if (param.header.menu) {
+    if (menu) {
         const nav = getElement('nav', ['menu-list']);
-        const allMenuLinks = param.header.menu.map(item => {
+        const allMenuLinks = menu.map(item => {
             const menuLink = getElement('a', ['menu-link'], {
                 href: item.link,
                 textContent: item.title,
@@ -63,12 +65,12 @@ const createHeader = (param) => {
         });
 
         nav.append(...allMenuLinks);
-        wrapper.append(nav);
+        wrapperHeader.append(nav);
     }
 
-    if (param.header.social) {
+    if (social) {
         const socialWrapper = getElement('div', ['social']);
-        const allSocial = param.header.social.map(item => {
+        const allSocial = social.map(item => {
             const socialLink = getElement('a', ['social-link']);
             socialLink.append(getElement('img', [], {
                 src: item.image,
@@ -81,11 +83,15 @@ const createHeader = (param) => {
         });
 
         socialWrapper.append(...allSocial);
-        wrapper.append(socialWrapper);
+        wrapperHeader.append(socialWrapper);
+    }
+
+    if (burger) {
+		container.append(burgerButton);
     }
 
     header.append(container);
-    container.append(wrapper);
+    container.append(wrapperHeader);
 
     return header;
 };
@@ -180,6 +186,12 @@ const movieConstructor = (selector, options) => {
     }
 };
 
+burgerButton.addEventListener('click', () => {
+    burgerButton.classList.toggle('menu-button-active');
+    wrapperHeader.classList.toggle('header-active');
+    console.log('CLICKED');
+});
+
 movieConstructor('.app', {
     title: 'Ведьмак',
     background: 'witcher/background.jpg',
@@ -215,7 +227,10 @@ movieConstructor('.app', {
                 title: 'Отзывы',
                 link: '#',
             },
-        ]
+        ],
+        burger: {
+            button: ''
+        }
     },
     main: {
         genre: '2019, фэнтези',
