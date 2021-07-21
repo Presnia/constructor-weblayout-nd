@@ -189,7 +189,6 @@ const movieConstructor = (selector, options) => {
 burgerButton.addEventListener('click', () => {
     burgerButton.classList.toggle('menu-button-active');
     wrapperHeader.classList.toggle('header-active');
-    console.log('CLICKED');
 });
 
 movieConstructor('.app', {
