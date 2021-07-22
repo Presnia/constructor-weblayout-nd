@@ -22,7 +22,18 @@ menuButton.addEventListener('click', function () {
 	menu.classList.toggle('header-active');
 }) */
 
-const getElement = (tagName, classNames, attributes) => {
+const burgerButton = getElement('button', ['menu-button']);
+const wrapperHeader = getElement('div', ['header']);
+
+const setFavicon = (favImage) => {
+    const headTitle = document.querySelector('head');
+    const favicon = document.createElement('link');
+    favicon.setAttribute('rel', 'shortcut icon');
+    favicon.setAttribute('href', favImage);
+    headTitle.append(favicon);
+};
+
+function getElement(tagName, classNames, attributes) {
     const element = document.createElement(tagName);
 
     if (classNames) {
@@ -37,9 +48,6 @@ const getElement = (tagName, classNames, attributes) => {
 
     return element;
 };
-
-const burgerButton = getElement('button', ['menu-button']);
-const wrapperHeader = getElement('div', ['header']);
 
 const createHeader = ({ title, header: { logo, menu, social, burger } }) => {
     const header = getElement('header');
@@ -175,6 +183,7 @@ const movieConstructor = (selector, options) => {
 
     app.style.backgroundImage = options.background ? `url('${options.background}')` : '';
 
+    setFavicon(options.faviconUrl);
     document.title = options.title;
 
     if (options.header) {
@@ -193,6 +202,7 @@ burgerButton.addEventListener('click', () => {
 
 movieConstructor('.app', {
     title: 'Ведьмак',
+    faviconUrl: 'witcher/logo.png',
     background: 'witcher/background.jpg',
     header: {
         logo: 'witcher/logo.png',
