@@ -289,29 +289,29 @@ burgerButton.addEventListener('click', () => {
 });
 
 movieConstructor('.app', {
-    title: 'Локи',
-    favicon: 'loki/favicon.png',
+    title: 'Ведьмак',
+    favicon: 'witcher/logo.png',
     fontColor: '#FFFFFF',
-    background: 'loki/background.jpg',
-    backgroundColor: '#000',
-    subColor: '#014206',
+    background: 'witcher/background.jpg',
+    backgroundColor: '#141218',
+    subColor: '#9D2929',
     header: {
-        logo: 'loki/logo.png',
+        logo: 'witcher/logo.png',
         social: [
             {
                 title: 'Twitter',
                 link: 'https://twitter.com',
-                image: 'loki/social/twitter.svg',
+                image: 'witcher/social/twitter.svg',
             },
             {
                 title: 'Instagram', 
                 link: 'https://instagram.com',
-                image: 'loki/social/instagram.svg',
+                image: 'witcher/social/instagram.svg',
             },
             {
                 title: 'Facebook',
                 link: 'https://facebook.com',
-                image: 'loki/social/facebook.svg',
+                image: 'witcher/social/facebook.svg',
             }
         ],
         menu: [
@@ -332,44 +332,34 @@ movieConstructor('.app', {
             button: ''
         }
     },
-    main : {
-        genre: '2021, фантастика, фэнтези, боевик, приключения',
+    main: {
+        genre: '2019, фэнтези',
         rating: '8',
-        description: 'Локи попадает в таинственную организацию «Управление временными изменениями» после того, как он украл Тессеракт, и путешествует во времени, меняя историю.',
-        trailer: 'https://youtu.be/YrjHcYqe31g',
+        description: 'Ведьмак Геральт, мутант и убийца чудовищ, на своей верной лошади по кличке Плотва путешествует по Континенту. За тугой мешочек чеканных монет этот мужчина избавит вас от всякой настырной нечисти — хоть от чудищ болотных, оборотней и даже заколдованных принцесс.',
+        trailer: 'https://www.youtube.com/watch?v=P0oJqfLzZzQ',
         slider: [
             {
-                img: 'loki/series/series-1.jpg',
-                title: 'Славная миссия',
+                img: 'witcher/series/series-1.jpg',
+                title: 'Начало конца',
                 subtitle: 'Серия №1',
-            }, 
+            },
             {
-                img: 'loki/series/series-2.jpg',
-                title: 'Вариант',
+                img: 'witcher/series/series-2.jpg',
+                title: 'Четыре марки',
                 subtitle: 'Серия №2',
-            }, 
+            },
             {
-                img: 'loki/series/series-3.jpg',
-                title: 'Ламентис',
+                img: 'witcher/series/series-3.jpg',
+                title: 'Предательская луна',
                 subtitle: 'Серия №3',
-            }, 
+            },
             {
-                img: 'loki/series/series-4.jpg',
-                title: 'Смежное событие',
+                img: 'witcher/series/series-4.jpg',
+                title: 'Банкеты, ублюдки и похороны',
                 subtitle: 'Серия №4',
             },
-            {
-                img: 'loki/series/series-5.jpg',
-                title: 'Путешествие в неизвестность',
-                subtitle: 'Серия №5',
-            },
-            {
-                img: 'loki/series/series-6.jpg',
-                title: 'На все времена. Всегда',
-                subtitle: 'Серия №6',
-            }
         ]
-      },
+    },
     footer: {
         copyright: '© 2020 The Witcher. All right reserved.',
         menu: [
