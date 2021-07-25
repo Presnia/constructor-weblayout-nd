@@ -207,6 +207,41 @@ const createMain = ({
     return main;
 };
 
+const createFooter = ({ title, footer: { copyright, menu } }) => {
+    const footer = getElement('footer', ['footer']);
+    const container = getElement('div', ['container']);
+    footer.append(container);
+    const footerContent = getElement('div', ['footer-content']);
+    container.append(footerContent);
+    const leftPart = getElement('div', ['left']);
+    const rightPart = getElement('div', ['right']);
+
+    if (copyright) {
+        const copyrightSpan = getElement('span', ['copyright'], {
+            textContent: copyright
+        });
+        leftPart.append(copyrightSpan);
+    }
+
+    if (menu) {
+        const footerMenu = getElement('nav', ['footer-menu']);
+        const menuLinks = menu.map(item => {
+            const menuLink = getElement('a', ['footer-link'], {
+                href: item.link,
+                textContent: item.title,
+            });
+
+            return menuLink;
+        });
+
+        footerMenu.append(...menuLinks);
+        rightPart.append(footerMenu);
+        footerContent.append(leftPart, rightPart);
+    }
+
+    return footer;
+};
+
 const movieConstructor = (selector, options) => {
     const app = document.querySelector(selector);
     app.classList.add('body-app');
@@ -241,6 +276,10 @@ const movieConstructor = (selector, options) => {
 
     if (options.main) {
         app.append(createMain(options));
+    }
+
+    if (options.footer) {
+        app.append(createFooter(options));
     }
 };
 
@@ -321,4 +360,21 @@ movieConstructor('.app', {
             },
         ]
     },
+    footer: {
+        copyright: '© 2020 The Witcher. All right reserved.',
+        menu: [
+            {
+                link: '#',
+                title: 'Privacy Policy'
+            },
+            {
+                link: '#',
+                title: 'Terms of Service'
+            },
+            {
+                link: '#',
+                title: 'Legal'
+            },
+        ]
+    }
 });
