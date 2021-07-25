@@ -25,13 +25,13 @@ menuButton.addEventListener('click', function () {
 const burgerButton = getElement('button', ['menu-button']);
 const wrapperHeader = getElement('div', ['header']);
 
-const setFavicon = (favImage) => {
+/* const setFavicon = (favImage) => {
     const headTitle = document.querySelector('head');
     const favicon = document.createElement('link');
     favicon.setAttribute('rel', 'shortcut icon');
     favicon.setAttribute('href', favImage);
     headTitle.append(favicon);
-};
+}; */
 
 function getElement(tagName, classNames, attributes) {
     const element = document.createElement(tagName);
@@ -183,7 +183,19 @@ const movieConstructor = (selector, options) => {
 
     app.style.backgroundImage = options.background ? `url('${options.background}')` : '';
 
-    setFavicon(options.faviconUrl);
+    if (options.favicon) {
+        const index = options.favicon.lastIndexOf('.');
+        const type = options.favicon.substring(index + 1);
+
+        const favicon = getElement('link', null, {
+            rel: 'icon',
+            href: options.favicon,
+            type: 'image/' + (type === 'svg' ? 'svg-hml' : type)
+        });
+
+        document.head.append(favicon);
+    }
+
     document.title = options.title;
 
     if (options.header) {
@@ -191,7 +203,7 @@ const movieConstructor = (selector, options) => {
     }
 
     if (options.main) {
-        app.append(createMain(options))
+        app.append(createMain(options));
     }
 };
 
@@ -202,7 +214,7 @@ burgerButton.addEventListener('click', () => {
 
 movieConstructor('.app', {
     title: 'Ведьмак',
-    faviconUrl: 'witcher/logo.png',
+    favicon: 'witcher/logo.png',
     background: 'witcher/background.jpg',
     header: {
         logo: 'witcher/logo.png',
