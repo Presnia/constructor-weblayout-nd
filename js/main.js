@@ -1,27 +1,3 @@
-/* new Swiper('.swiper-container', {
-	loop: true,
-	navigation: {
-		nextEl: '.arrow',
-	},
-	breakpoints: {
-		320: {
-			slidesPerView: 1,
-			spaceBetween: 20
-		},
-		541: {
-			slidesPerView: 2,
-			spaceBetween: 40
-		}
-	}
-});
-
-const menuButton = document.querySelector('.menu-button');
-const menu = document.querySelector('.header');
-menuButton.addEventListener('click', function () {
-	menuButton.classList.toggle('menu-button-active');
-	menu.classList.toggle('header-active');
-}) */
-
 const burgerButton = getElement('button', ['menu-button']);
 const wrapperHeader = getElement('div', ['header']);
 
@@ -209,6 +185,23 @@ const createMain = ({
         sliderBlock.append(swiperBlock, arrowBtn);
         
         container.append(sliderBlock);
+
+        new Swiper(swiperBlock, {
+            loop: true,
+            navigation: {
+                nextEl: arrowBtn,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                541: {
+                    slidesPerView: 2,
+                    spaceBetween: 40
+                }
+            }
+        });
     }
 
     return main;
